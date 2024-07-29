@@ -12,6 +12,8 @@ import java.net.URI;
 import java.util.Properties;
 
 import static utils.PROPERTIESReader.getConfigs;
+import static utils.ReportManager.initialize;
+import static utils.ReportManager.printReport;
 
 public class DriverManager {
     public static AndroidDriver driver;
@@ -26,6 +28,8 @@ public class DriverManager {
         catch(IOException e){
             System.out.println("Config File not found!!!");
         }
+        // Initialize the report manager
+        initialize(config.getProperty("reportOutputPath"));
         // Load desired capabilities
         DesiredCapabilities desCap = new DesiredCapabilities();
         desCap.setCapability("platformName",config.getProperty("operatingSystem"));
@@ -43,5 +47,6 @@ public class DriverManager {
     public void tearDown(){
         // Quit the WebDriver instance
         driver.quit();
+        printReport();
     }
 }

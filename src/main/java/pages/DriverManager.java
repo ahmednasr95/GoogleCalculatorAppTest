@@ -37,6 +37,7 @@ public class DriverManager {
         desCap.setCapability("appium:automationName",config.getProperty("automationName"));
         desCap.setCapability("appium:deviceName",config.getProperty("deviceName"));
         desCap.setCapability("appium:app", System.getProperty("user.dir")+'/'+config.getProperty("appLocation"));
+        desCap.setCapability("appium:isHeadless",true);
         URI link = URI.create(config.getProperty("serverURL"));
         // Create new driver object
         driver = new AndroidDriver(link.toURL(),desCap);
